@@ -12,6 +12,10 @@ public:
 
     BigInt(const long long x) {
         long long z=x;
+        if(x==0)
+        {
+            _data.push_back(x);
+        }
         while(z>0)
         {
             _data.push_back(z%10);
@@ -20,6 +24,7 @@ public:
     }
 
     BigInt(const BigInt& other) {
+        
     }
 
     BigInt& operator=(const BigInt& other) {
