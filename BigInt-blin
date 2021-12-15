@@ -63,6 +63,41 @@ public:
     }
 
     BigInt operator*(const BigInt& other) const {
+        BigInt ans;
+        for(int i=0;i<_data.size();++i)
+        {
+            int t=0;
+            int j=0;
+            for(j=0;j<other._data.size();++j)
+            {
+                t+=_data[i]*other._data[i];
+                if(i+j<ans.size())
+                {
+                    t+=ans[i+j];
+                    ans[i+j]=t%10;
+                }else
+                {
+                     ans.push_back(t%10);
+                }
+                t/=10;
+            }
+            int o=j+i;
+            while(t>0)
+            {
+                if(o<ans.size())
+                {
+                    t+=ans[o];
+                    ans[o]=t%10;
+                }
+                else
+                {
+                    ans.push_back(t%10);
+                }
+                t/=10;
+                ++o;
+            }
+        }
+        return ans;
     }
 
     bool operator==(const BigInt& other) const {
